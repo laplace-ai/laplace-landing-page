@@ -2,56 +2,58 @@
 
 import { motion } from 'framer-motion'
 import { HeroVideo } from './hero-video'
+import { useI18n } from '@/lib/i18n'
 
 export function HeroSection() {
+  const { t } = useI18n()
+
   return (
     <section id="hero" className="relative h-screen w-full overflow-hidden">
-      {/* Background video or fallback */}
+      {/* Background video */}
       <HeroVideo />
 
-      {/* Softer gradient overlay — just enough for bottom fade */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--bg-base)] pointer-events-none" />
+      {/* Top gradient — subtle, for navbar readability */}
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[var(--bg-base)]/60 to-transparent pointer-events-none z-[1]" />
+      {/* Bottom gradient — fades into next section */}
+      <div className="absolute inset-x-0 bottom-0 h-72 bg-gradient-to-t from-[var(--bg-base)] via-[var(--bg-base)]/60 to-transparent pointer-events-none z-[1]" />
 
-      {/* Giant "Laplace Log" text — rendered ABOVE the overlay */}
-      <div className="absolute inset-0 flex items-center justify-center z-10">
-        <motion.h1
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.4, ease: [0.25, 0.4, 0.25, 1] }}
-          className="select-none text-center"
-        >
-          <span className="block text-[15vw] md:text-[14vw] lg:text-[13vw] font-extralight tracking-tight leading-[0.85] text-[var(--text-primary)]">
-            Laplace
-          </span>
-          <span className="block text-[10vw] md:text-[9vw] lg:text-[8vw] font-thin tracking-tight leading-[0.85] text-[var(--text-secondary)]">
-            Log
-          </span>
-        </motion.h1>
-      </div>
+      {/* Giant "Laplace Log" — bottom-left, Gotham-inspired */}
+      <motion.h1
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.4, ease: [0.25, 0.4, 0.25, 1] }}
+        className="absolute bottom-[5vw] left-0 z-10 px-6 md:px-10 lg:px-14 select-none flex items-baseline"
+      >
+        <span className="text-[18vw] md:text-[16vw] lg:text-[14vw] font-extralight tracking-tighter leading-none text-[var(--text-hero)]">
+          Laplace
+        </span>
+        <span className="inline-block w-[3vw]" />
+        <span className="text-[18vw] md:text-[16vw] lg:text-[14vw] font-extralight tracking-tighter leading-none text-[var(--text-hero)]">
+          Log
+        </span>
+      </motion.h1>
 
-      {/* Tagline at bottom */}
-      <motion.div
+      {/* Tagline — separately positioned, pinned to very bottom */}
+      <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.8, ease: 'easeOut' }}
-        className="absolute bottom-10 left-0 right-0 text-center z-10"
+        className="absolute bottom-[3vw] left-0 right-0 z-10 text-center text-xs md:text-sm tracking-[0.3em] uppercase text-[var(--text-secondary)] font-light"
       >
-        <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-[var(--text-tertiary)] font-light">
-          Digital Twin para Redes Logisticas
-        </p>
-      </motion.div>
+        {t('hero.tagline')}
+      </motion.p>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — subtle animated line */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-10 right-8 hidden md:block z-10"
+        transition={{ delay: 2, duration: 1 }}
+        className="absolute bottom-6 right-8 hidden md:block z-10"
       >
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          className="w-[1px] h-12 bg-gradient-to-b from-transparent via-[var(--text-tertiary)] to-transparent"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+          className="w-[1px] h-10 bg-gradient-to-b from-transparent via-[var(--text-tertiary)]/50 to-transparent"
         />
       </motion.div>
     </section>

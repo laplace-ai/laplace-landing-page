@@ -7,6 +7,7 @@ import {
   AppWindow,
   type LucideIcon,
 } from 'lucide-react'
+import { useI18n } from '@/lib/i18n'
 
 /* ───────────────────────────────────────
    Digital Twin Framework Layers
@@ -21,6 +22,62 @@ export interface FrameworkLayer {
   examples?: string[]
 }
 
+export function useFrameworkLayers(): FrameworkLayer[] {
+  const { t } = useI18n()
+
+  return [
+    {
+      id: 'physical',
+      title: t('framework.layer.physical'),
+      subtitle: t('framework.layer.physical.sub'),
+      description: t('framework.layer.physical.desc'),
+      icon: Truck,
+      examples: [t('framework.ex.fleet'), t('framework.ex.branches'), t('framework.ex.cargo'), t('framework.ex.routes')],
+    },
+    {
+      id: 'systems',
+      title: t('framework.layer.systems'),
+      subtitle: t('framework.layer.systems.sub'),
+      description: t('framework.layer.systems.desc'),
+      icon: Radio,
+      examples: ['TMS', 'GPS', 'IoT', 'ELD'],
+    },
+    {
+      id: 'data',
+      title: t('framework.layer.data'),
+      subtitle: t('framework.layer.data.sub'),
+      description: t('framework.layer.data.desc'),
+      icon: Database,
+      examples: [t('framework.ex.sync'), t('framework.ex.validation'), t('framework.ex.quality')],
+    },
+    {
+      id: 'model',
+      title: t('framework.layer.model'),
+      subtitle: t('framework.layer.model.sub'),
+      description: t('framework.layer.model.desc'),
+      icon: Box,
+      examples: [t('framework.ex.vehicles'), t('framework.ex.branches'), t('framework.ex.cargo'), t('framework.ex.routes')],
+    },
+    {
+      id: 'intelligence',
+      title: t('framework.layer.intelligence'),
+      subtitle: t('framework.layer.intelligence.sub'),
+      description: t('framework.layer.intelligence.desc'),
+      icon: Brain,
+      examples: ['AI', 'ML', t('framework.ex.simulator')],
+    },
+    {
+      id: 'application',
+      title: t('framework.layer.application'),
+      subtitle: t('framework.layer.application.sub'),
+      description: t('framework.layer.application.desc'),
+      icon: AppWindow,
+      examples: ['Dashboard', t('framework.ex.prediction'), t('framework.ex.simulator')],
+    },
+  ]
+}
+
+// Keep static export for backward compat (won't be translated)
 export const FRAMEWORK_LAYERS: FrameworkLayer[] = [
   {
     id: 'physical',
@@ -87,17 +144,17 @@ export interface TeamMember {
 export const TEAM_MEMBERS: TeamMember[] = [
   {
     name: 'Pedro Bacelar',
-    role: 'Co-founder & CEO',
-    image: '/images/co-founders/pedro-bacelar.jpg',
-    bio: 'Engenheiro mecatronico pela Poli-USP. Pesquisador no laboratorio de Industria 4.0 da Fabrica do Futuro.',
-    linkedin: 'https://www.linkedin.com/in/pedro-bacelar/',
+    role: 'CEO & Co-founder',
+    image: '/images/co-founders/pedro-bacelar.png',
+    bio: '',
+    linkedin: 'https://www.linkedin.com/in/p-bacelar/',
   },
   {
     name: 'Gabriel Gelli',
-    role: 'Co-founder & CTO',
-    image: '/images/co-founders/gabriel-gelli.jpg',
-    bio: 'Engenheiro pela Poli-USP. Lidera a arquitetura tecnologica e as solucoes de otimizacao da Laplace.',
-    linkedin: 'https://www.linkedin.com/in/gabriel-gelli/',
+    role: 'CTO & Co-founder',
+    image: '/images/co-founders/gabriel-gelli.png',
+    bio: '',
+    linkedin: 'https://www.linkedin.com/in/gabrielgelli/',
   },
 ]
 
@@ -108,19 +165,18 @@ export const TEAM_MEMBERS: TeamMember[] = [
 export interface Partner {
   name: string
   logo?: string
+  logoDark?: string
+  logoLight?: string
 }
 
 export const PARTNERS: Partner[] = [
-  { name: 'Fabrica do Futuro' },
-  { name: 'NVIDIA Inception' },
-]
-
-/* ───────────────────────────────────────
-   Navigation
-   ─────────────────────────────────────── */
-
-export const NAV_LINKS = [
-  { label: 'Framework', href: '#framework' },
-  { label: 'Equipe', href: '#equipe' },
-  { label: 'Parceiros', href: '#parceiros' },
+  {
+    name: 'Fábrica do Futuro',
+    logoDark: '/images/partners/dark_fabrica do futuro white.png',
+    logoLight: '/images/partners/light_fabrica_futuro.png',
+  },
+  {
+    name: 'NVIDIA Inception',
+    logo: '/images/partners/nvidia-inception-program-badge-rgb-for-screen.jpg',
+  },
 ]
