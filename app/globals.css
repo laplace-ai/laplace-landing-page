@@ -1,26 +1,155 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
+/* ───────────────────────────────────────
+   Design Tokens — Laplace Landing Page
+   ─────────────────────────────────────── */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Backgrounds */
+  --bg-base: #FFFFFF;
+  --bg-deep: #F7F7F5;
+  --bg-surface: #F0F0EE;
+  --bg-surface-hover: #E8E8E5;
+  --bg-overlay: rgba(255, 255, 255, 0.8);
+
+  /* Text */
+  --text-primary: #37352F;
+  --text-secondary: #6B7280;
+  --text-tertiary: #9CA3AF;
+
+  /* Brand */
+  --blue-primary: #3A8DFF;
+  --blue-hover: #2B7AE8;
+  --blue-subtle: rgba(58, 141, 255, 0.1);
+
+  /* Borders */
+  --border-default: #E5E5E3;
+  --border-subtle: #F0F0EE;
+
+  /* Gradients (footer) */
+  --gradient-start: #FFFFFF;
+  --gradient-mid: #EDE9FE;
+  --gradient-end: #F5F3FF;
+
+  /* Framework layers (light mode) */
+  --layer-1: #F3F4F6;
+  --layer-2: #E5E7EB;
+  --layer-3: #D1D5DB;
+  --layer-4: #9CA3AF;
+  --layer-5: #4B6A9B;
+  --layer-6: #3A8DFF;
+
+  /* Layer text */
+  --layer-text-1: #374151;
+  --layer-text-2: #374151;
+  --layer-text-3: #374151;
+  --layer-text-4: #FFFFFF;
+  --layer-text-5: #FFFFFF;
+  --layer-text-6: #FFFFFF;
+}
+
+.dark {
+  /* Backgrounds */
+  --bg-base: #0A0A0A;
+  --bg-deep: #050505;
+  --bg-surface: #141414;
+  --bg-surface-hover: #1E1E1E;
+  --bg-overlay: rgba(10, 10, 10, 0.8);
+
+  /* Text */
+  --text-primary: #E2E8F0;
+  --text-secondary: #94A3B8;
+  --text-tertiary: #64748B;
+
+  /* Brand */
+  --blue-primary: #3A8DFF;
+  --blue-hover: #5AA0FF;
+  --blue-subtle: rgba(58, 141, 255, 0.15);
+
+  /* Borders */
+  --border-default: #1E1E1E;
+  --border-subtle: #141414;
+
+  /* Gradients (footer) */
+  --gradient-start: #0A0A0A;
+  --gradient-mid: #1e1b4b;
+  --gradient-end: #0f0a2a;
+
+  /* Framework layers (dark mode) */
+  --layer-1: #111111;
+  --layer-2: #181818;
+  --layer-3: #202020;
+  --layer-4: #2a2a2a;
+  --layer-5: #1e3a5f;
+  --layer-6: #3A8DFF;
+
+  /* Layer text */
+  --layer-text-1: #64748B;
+  --layer-text-2: #94A3B8;
+  --layer-text-3: #CBD5E1;
+  --layer-text-4: #E2E8F0;
+  --layer-text-5: #FFFFFF;
+  --layer-text-6: #FFFFFF;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg-base: var(--bg-base);
+  --color-bg-deep: var(--bg-deep);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-surface-hover: var(--bg-surface-hover);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-blue-primary: var(--blue-primary);
+  --color-blue-hover: var(--blue-hover);
+  --color-blue-subtle: var(--blue-subtle);
+  --color-border-default: var(--border-default);
+  --color-border-subtle: var(--border-subtle);
+  --font-inter: var(--font-inter);
+  --font-jetbrains: var(--font-jetbrains);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ───────────────────────────────────────
+   Base Styles
+   ─────────────────────────────────────── */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--blue-primary);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
 }
