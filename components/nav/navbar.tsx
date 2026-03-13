@@ -104,14 +104,14 @@ export function Navbar() {
                     className="absolute right-0 mt-2 w-44 rounded-lg border border-[var(--border-default)] bg-[var(--bg-base)] shadow-lg overflow-hidden"
                   >
                     <a
-                      href="https://app.laplacelog.co"
+                      href="https://app.laplacelog.com"
                       className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] transition-colors"
                     >
                       <AppWindow className="size-4" />
                       App
                     </a>
                     <a
-                      href="https://docs.laplacelog.co"
+                      href="https://docs.laplacelog.com"
                       className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] transition-colors"
                     >
                       <BookOpen className="size-4" />
@@ -170,7 +170,7 @@ export function Navbar() {
               ))}
               <div className="mt-2 flex flex-col gap-2">
                 <a
-                  href="https://app.laplacelog.co"
+                  href="https://app.laplacelog.com"
                   onClick={() => setMobileOpen(false)}
                   className="flex items-center gap-2.5 px-4 py-2.5 rounded-lg border border-[var(--border-default)] text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] transition-colors"
                 >
@@ -178,7 +178,7 @@ export function Navbar() {
                   App
                 </a>
                 <a
-                  href="https://docs.laplacelog.co"
+                  href="https://docs.laplacelog.com"
                   onClick={() => setMobileOpen(false)}
                   className="flex items-center gap-2.5 px-4 py-2.5 rounded-lg border border-[var(--border-default)] text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] transition-colors"
                 >

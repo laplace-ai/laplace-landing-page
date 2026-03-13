@@ -93,7 +93,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'hero.tagline': 'Digital Twin for Logistics Networks',
 
     // Value
-    'value.heading': 'Imagine a virtual replica of your entire logistics network.',
+    'value.heading': 'Imagine a virtual replica of your logistics network.',
 
     // Framework
     'framework.label': 'Architecture',
