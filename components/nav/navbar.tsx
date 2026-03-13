@@ -5,7 +5,7 @@ import { useTheme } from 'next-themes'
 import Image from 'next/image'
 import { ThemeToggle } from '@/components/shared/theme-toggle'
 import { useI18n } from '@/lib/i18n'
-import { Menu, X, Globe } from 'lucide-react'
+import { Menu, X, Globe, ChevronDown, AppWindow, BookOpen } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -15,6 +15,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [loginOpen, setLoginOpen] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -83,6 +84,44 @@ export function Navbar() {
 
             <ThemeToggle />
 
+            {/* Login dropdown */}
+            <div className="relative hidden md:block">
+              <button
+                onClick={() => setLoginOpen(!loginOpen)}
+                onBlur={() => setTimeout(() => setLoginOpen(false), 150)}
+                className="flex items-center gap-1.5 px-3 h-[38px] rounded-lg border border-[var(--border-default)] text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] transition-colors duration-200"
+              >
+                Log in
+                <ChevronDown className={cn("size-3.5 transition-transform duration-200", loginOpen && "rotate-180")} />
+              </button>
+              <AnimatePresence>
+                {loginOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -4 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute right-0 mt-2 w-44 rounded-lg border border-[var(--border-default)] bg-[var(--bg-base)] shadow-lg overflow-hidden"
+                  >
+                    <a
+                      href="https://app.laplacelog.co"
+                      className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] transition-colors"
+                    >
+                      <AppWindow className="size-4" />
+                      App
+                    </a>
+                    <a
+                      href="https://docs.laplacelog.co"
+                      className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] transition-colors"
+                    >
+                      <BookOpen className="size-4" />
+                      Docs
+                    </a>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
             <a
               href="https://www.linkedin.com/in/p-bacelar/"
               target="_blank"
@@ -129,14 +168,32 @@ export function Navbar() {
                   {link.label}
                 </a>
               ))}
-              <a
-                href="https://www.linkedin.com/in/p-bacelar/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 flex items-center justify-center rounded-lg bg-[var(--blue-primary)] text-white text-sm font-normal" style={{ paddingLeft: '18px', paddingRight: '18px', height: '38px' }}
-              >
-                Demo
-              </a>
+              <div className="mt-2 flex flex-col gap-2">
+                <a
+                  href="https://app.laplacelog.co"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center gap-2.5 px-4 py-2.5 rounded-lg border border-[var(--border-default)] text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] transition-colors"
+                >
+                  <AppWindow className="size-4" />
+                  App
+                </a>
+                <a
+                  href="https://docs.laplacelog.co"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center gap-2.5 px-4 py-2.5 rounded-lg border border-[var(--border-default)] text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] transition-colors"
+                >
+                  <BookOpen className="size-4" />
+                  Docs
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/p-bacelar/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center rounded-lg bg-[var(--blue-primary)] text-white text-sm font-normal" style={{ paddingLeft: '18px', paddingRight: '18px', height: '38px' }}
+                >
+                  Demo
+                </a>
+              </div>
             </div>
           </motion.div>
         )}
